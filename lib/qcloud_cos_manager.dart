@@ -37,6 +37,11 @@ class QCloudCosInitOptions {
 
   factory QCloudCosInitOptions.fromJson(String source) =>
       QCloudCosInitOptions.fromMap(json.decode(source));
+
+  @override
+  String toString() {
+    return 'QCloudCosInitOptions(region: $region, secretId: $secretId, secretKey: $secretKey, appId: $appId)';
+  }
 }
 
 class QCloudCosManagerUploadOptions {
@@ -70,6 +75,10 @@ class QCloudCosManagerUploadOptions {
 
   factory QCloudCosManagerUploadOptions.fromJson(String source) =>
       QCloudCosManagerUploadOptions.fromMap(json.decode(source));
+
+  @override
+  String toString() =>
+      'QCloudCosManagerUploadOptions(filePath: $filePath, savePath: $savePath, bucket: $bucket)';
 }
 
 class QCloudCosManagerUploadResult {
@@ -99,6 +108,10 @@ class QCloudCosManagerUploadResult {
 
   factory QCloudCosManagerUploadResult.fromJson(String source) =>
       QCloudCosManagerUploadResult.fromMap(json.decode(source));
+
+  @override
+  String toString() =>
+      'QCloudCosManagerUploadResult(key: $key, location: $location)';
 }
 
 class QCloudCosManager {
@@ -132,7 +145,8 @@ class QCloudCosManager {
     }
   }
 
-  Future<QCloudCosManagerUploadResult> upload(QCloudCosInitOptions arg) async {
+  Future<QCloudCosManagerUploadResult> upload(
+      QCloudCosManagerUploadOptions arg) async {
     final Object encoded = arg.toMap();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.QCloudCosManager.upload',
@@ -156,7 +170,7 @@ class QCloudCosManager {
       );
     } else {
       return QCloudCosManagerUploadResult.fromMap(
-          replyMap['result'] as Map<String, dynamic>);
+          replyMap['result'] as Map<dynamic, dynamic>);
     }
   }
 }

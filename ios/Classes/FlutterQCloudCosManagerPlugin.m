@@ -1,4 +1,4 @@
-#import "FlutterQcloudcosxmlPlugin.h"
+#import "FlutterQCloudCosManagerPlugin.h"
 #if __has_include(<flutter_qcloudcosxml/flutter_qcloudcosxml-Swift.h>)
 #import <flutter_qcloudcosxml/flutter_qcloudcosxml-Swift.h>
 #else
@@ -8,8 +8,8 @@
 #import "flutter_qcloudcosxml-Swift.h"
 #endif
 
-@implementation FlutterQcloudcosxmlPlugin
+@implementation FlutterQCloudCosManagerPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-  [SwiftFlutterQcloudcosxmlPlugin registerWithRegistrar:registrar];
+  [SwiftFlutterQCloudCosManagerPlugin registerWithRegistrar:registrar];
 }
 @end
