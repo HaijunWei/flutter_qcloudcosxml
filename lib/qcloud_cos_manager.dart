@@ -169,8 +169,8 @@ class QCloudCosManager {
         details: error['details'],
       );
     } else {
-      return QCloudCosManagerUploadResult.fromMap(
-          replyMap['result'] as Map<dynamic, dynamic>);
+      return QCloudCosManagerUploadResult.fromMap(Map<String, dynamic>.from(
+          replyMap['result'] as Map<dynamic, dynamic>));
     }
   }
 }
