@@ -124,11 +124,8 @@ class FlutterQcloudcosxmlPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
             Log.d("QcloudcosxmlPlugin",options.toMap().toString())
             TransferManager(cosXmlService, TransferConfig.Builder().build())
                     .upload(bucket, savePath, filePath, null)
-                    .apply {
-                        setCosXmlProgressListener { complete, target ->
-                            Log.d("QcloudcosxmlPlugin","uploading:${complete}/${target}")
-                        }
-                        setCosXmlResultListener(object : CosXmlResultListener {
+                    .let {
+                        it.setCosXmlResultListener(object : CosXmlResultListener {
                             override fun onSuccess(cosXmlRequest: CosXmlRequest?, cosXmlResult: CosXmlResult?) {
                                 val cOSXMLUploadTaskResult = cosXmlResult as COSXMLUploadTaskResult
                                 val data = QCloudCosManagerUploadResult()
@@ -149,7 +146,12 @@ class FlutterQcloudcosxmlPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
                             }
                         })
 
-                        setTransferStateListener {
+                        it.setCosXmlProgressListener { complete, target ->
+                            Log.d("QcloudcosxmlPlugin","uploading:${complete}/${target}")
+                        }
+
+
+                        it.setTransferStateListener {
                             Log.d("QcloudcosxmlPlugin","upload state :${it.name}")
                         }
                     }
