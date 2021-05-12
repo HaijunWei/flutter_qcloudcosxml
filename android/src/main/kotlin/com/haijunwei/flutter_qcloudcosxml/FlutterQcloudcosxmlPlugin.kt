@@ -133,10 +133,14 @@ class FlutterQcloudcosxmlPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
                                     val data = QCloudCosManagerUploadResult()
                                     data.key = options.savePath
                                     data.location = cOSXMLUploadTaskResult.accessUrl
-                                    result?.success(data)
+                                    activityBinding?.activity?.runOnUiThread {
+                                        result?.success(data)
+                                    }
                                 }catch (e:Exception){
                                     Log.d("QcloudcosxmlPlugin","upload error :${e.message}")
-                                    result?.error(e)
+                                    activityBinding?.activity?.runOnUiThread {
+                                        result?.error(e)
+                                    }
                                 }
 
 
@@ -147,7 +151,9 @@ class FlutterQcloudcosxmlPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
                                 Log.d("QcloudcosxmlPlugin","upload error :${exception?.message}")
                                 val throwable = Throwable(exception?.message
                                         ?: serviceException?.message)
-                                result?.error(throwable)
+                                activityBinding?.activity?.runOnUiThread {
+                                    result?.error(throwable)
+                                }
                             }
                         })
 
