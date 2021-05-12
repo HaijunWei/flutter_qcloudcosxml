@@ -131,8 +131,8 @@ class FlutterQcloudcosxmlPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
                                 try {
                                     val cOSXMLUploadTaskResult = cosXmlResult as COSXMLUploadTaskResult
                                     val data = QCloudCosManagerUploadResult()
-                                    data.key = cOSXMLUploadTaskResult.picUploadResult.originalInfo.key
-                                    data.location = cOSXMLUploadTaskResult.picUploadResult.originalInfo.location
+                                    data.key = options.savePath
+                                    data.location = cOSXMLUploadTaskResult.accessUrl
                                     result?.success(data)
                                 }catch (e:Exception){
                                     Log.d("QcloudcosxmlPlugin","upload error :${e.message}")
