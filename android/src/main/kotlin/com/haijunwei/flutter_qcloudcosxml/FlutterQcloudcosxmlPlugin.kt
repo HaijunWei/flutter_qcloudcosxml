@@ -122,7 +122,6 @@ class FlutterQcloudcosxmlPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
         }
 
         options?.apply {
-            Log.d("QcloudcosxmlPlugin",options.toMap().toString())
             TransferManager(cosXmlService, TransferConfig.Builder().build())
                     .upload(bucket, savePath, filePath, null)
                     .let {
@@ -137,7 +136,6 @@ class FlutterQcloudcosxmlPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
                                         result?.success(data)
                                     }
                                 }catch (e:Exception){
-                                    Log.d("QcloudcosxmlPlugin","upload error :${e.message}")
                                     activityBinding?.activity?.runOnUiThread {
                                         result?.error(e)
                                     }
@@ -148,7 +146,6 @@ class FlutterQcloudcosxmlPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
                             }
 
                             override fun onFail(cosXmlRequest: CosXmlRequest?, exception: CosXmlClientException?, serviceException: CosXmlServiceException?) {
-                                Log.d("QcloudcosxmlPlugin","upload error :${exception?.message}")
                                 val throwable = Throwable(exception?.message
                                         ?: serviceException?.message)
                                 activityBinding?.activity?.runOnUiThread {
@@ -158,12 +155,10 @@ class FlutterQcloudcosxmlPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
                         })
 
                         it.setCosXmlProgressListener { complete, target ->
-                            Log.d("QcloudcosxmlPlugin","uploading:${complete}/${target}")
                         }
 
 
                         it.setTransferStateListener {
-                            Log.d("QcloudcosxmlPlugin","upload state :${it.name}")
                         }
                     }
         }
