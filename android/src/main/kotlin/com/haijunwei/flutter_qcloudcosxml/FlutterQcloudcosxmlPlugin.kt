@@ -127,6 +127,7 @@ class FlutterQcloudcosxmlPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
                     .let {
                         it.setCosXmlResultListener(object : CosXmlResultListener {
                             override fun onSuccess(cosXmlRequest: CosXmlRequest?, cosXmlResult: CosXmlResult?) {
+                                Log.d("QcloudcosxmlPlugin","upload success")
                                 val cOSXMLUploadTaskResult = cosXmlResult as COSXMLUploadTaskResult
                                 val data = QCloudCosManagerUploadResult()
                                 data.key = cOSXMLUploadTaskResult.picUploadResult.originalInfo.key
