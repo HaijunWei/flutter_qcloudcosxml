@@ -1,5 +1,6 @@
 package com.haijunwei.flutter_qcloudcosxml
 
+import android.util.Log
 import androidx.annotation.NonNull
 import com.haijunwei.flutter_qcloudcosxml.bean.QCloudCosInitOptions
 import com.haijunwei.flutter_qcloudcosxml.bean.QCloudCosManagerUploadOptions
@@ -120,11 +121,12 @@ class FlutterQcloudcosxmlPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
         }
 
         options?.apply {
+            Log.d("QcloudcosxmlPlugin",options.toMap().toString())
             TransferManager(cosXmlService, TransferConfig.Builder().build())
                     .upload(bucket, savePath, filePath, null)
                     .apply {
                         setCosXmlProgressListener { complete, target ->
-
+                            Log.d("QcloudcosxmlPlugin","uploading:${target}")
                         }
                         setCosXmlResultListener(object : CosXmlResultListener {
                             override fun onSuccess(cosXmlRequest: CosXmlRequest?, cosXmlResult: CosXmlResult?) {
@@ -133,9 +135,12 @@ class FlutterQcloudcosxmlPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
                                 data.key = cOSXMLUploadTaskResult.picUploadResult.originalInfo.key
                                 data.location = cOSXMLUploadTaskResult.picUploadResult.originalInfo.location
                                 result?.success(data)
+
+                                Log.d("QcloudcosxmlPlugin","upload success :${data.location}")
                             }
 
                             override fun onFail(cosXmlRequest: CosXmlRequest?, exception: CosXmlClientException?, serviceException: CosXmlServiceException?) {
+                                Log.d("QcloudcosxmlPlugin","upload error :${exception?.message}")
                                 val throwable = Throwable(exception?.message
                                         ?: serviceException?.message)
                                 result?.error(throwable)
