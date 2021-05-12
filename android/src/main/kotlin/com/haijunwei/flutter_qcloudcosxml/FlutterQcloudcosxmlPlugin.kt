@@ -109,6 +109,7 @@ class FlutterQcloudcosxmlPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
                 }
             }
         }
+        result?.success(null)
     }
 
     override fun upload(options: QCloudCosManagerUploadOptions?, result: com.haijunwei.flutter_qcloudcosxml.Result<QCloudCosManagerUploadResult?>?) {
