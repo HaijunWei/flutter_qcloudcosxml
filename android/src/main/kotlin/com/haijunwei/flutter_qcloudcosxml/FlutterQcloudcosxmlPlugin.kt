@@ -26,6 +26,7 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
+import java.lang.Exception
 
 
 /** FlutterQcloudcosxmlPlugin */
@@ -127,14 +128,17 @@ class FlutterQcloudcosxmlPlugin : FlutterPlugin, MethodCallHandler, ActivityAwar
                     .let {
                         it.setCosXmlResultListener(object : CosXmlResultListener {
                             override fun onSuccess(cosXmlRequest: CosXmlRequest?, cosXmlResult: CosXmlResult?) {
-                                Log.d("QcloudcosxmlPlugin","upload success")
-                                val cOSXMLUploadTaskResult = cosXmlResult as COSXMLUploadTaskResult
-                                val data = QCloudCosManagerUploadResult()
-                                data.key = cOSXMLUploadTaskResult.picUploadResult.originalInfo.key
-                                data.location = cOSXMLUploadTaskResult.picUploadResult.originalInfo.location
-                                Log.d("QcloudcosxmlPlugin","upload success :${data.location}")
+                                try {
+                                    val cOSXMLUploadTaskResult = cosXmlResult as COSXMLUploadTaskResult
+                                    val data = QCloudCosManagerUploadResult()
+                                    data.key = cOSXMLUploadTaskResult.picUploadResult.originalInfo.key
+                                    data.location = cOSXMLUploadTaskResult.picUploadResult.originalInfo.location
+                                    result?.success(data)
+                                }catch (e:Exception){
+                                    Log.d("QcloudcosxmlPlugin","upload error :${e.message}")
+                                    result?.error(e)
+                                }
 
-                                result?.success(data)
 
 
                             }
