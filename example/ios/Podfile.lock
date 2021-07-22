@@ -3,13 +3,13 @@ PODS:
   - flutter_qcloudcosxml (0.0.1):
     - Flutter
     - QCloudCOSXML
-  - QCloudCore (5.8.5):
-    - QCloudCore/Default (= 5.8.5)
-  - QCloudCore/Default (5.8.5)
-  - QCloudCOSXML (5.8.5):
-    - QCloudCOSXML/Default (= 5.8.5)
-  - QCloudCOSXML/Default (5.8.5):
-    - QCloudCore (= 5.8.5)
+  - QCloudCore (5.9.3):
+    - QCloudCore/Default (= 5.9.3)
+  - QCloudCore/Default (5.9.3)
+  - QCloudCOSXML (5.9.3):
+    - QCloudCOSXML/Default (= 5.9.3)
+  - QCloudCOSXML/Default (5.9.3):
+    - QCloudCore (= 5.9.3)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
@@ -29,8 +29,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   flutter_qcloudcosxml: 26f945f7f3c21d89984f51cbfd906f8ce9440c7f
-  QCloudCore: 36df98cfb2b1e7d17d9f10e46f9ae9b5e9ed4fbc
-  QCloudCOSXML: 82e7306d54f8fee97c509bebd0e5ee51f5ff9324
+  QCloudCore: a256ab496ccf53182217e7ef8c86cd278340fef9
+  QCloudCOSXML: 607ba96b5e2b516202c5ea2c8ec6b4b20ddfaf25
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 

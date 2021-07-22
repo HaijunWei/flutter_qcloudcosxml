@@ -54,7 +54,7 @@ public class SwiftFlutterQCloudCosManagerPlugin: NSObject, FlutterPlugin, QCloud
         credential.secretID = secretId
         credential.secretKey = secretKey
         credential.startDate = Date()
-        credential.experationDate = Date(timeIntervalSinceNow: 1 * 60 * 60 * 24)
+        credential.expirationDate = Date(timeIntervalSinceNow: 1 * 60 * 60 * 24)
         let creator = QCloudAuthentationV5Creator(credential: credential)
         let signature = creator?.signature(forData: urlRequst)
         continueBlock(signature, nil)
